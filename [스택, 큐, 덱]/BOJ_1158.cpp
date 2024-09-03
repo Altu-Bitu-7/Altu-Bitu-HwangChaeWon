@@ -3,14 +3,14 @@
 
 using namespace std;
 
-void josephus(queue<int> q, int k) { //¹®Á¦Ç®ÀÌ
+void josephus(queue<int> q, int k) { //ë¬¸ì œí’€ì´
 	cout << "<";
 	while (q.size() != 1) {
-		for (int i = 0; i < k - 1; i++) { //k-1¹ø ¹İº¹ÇØ¼­ Å¥ °ª µ¹¸®±â
+		for (int i = 0; i < k - 1; i++) { //k-1ë²ˆ ë°˜ë³µí•´ì„œ í ê°’ ëŒë¦¬ê¸°
 			q.push(q.front());
 			q.pop();
 		}
-		cout << q.front() << ", "; //k¹øÂ° °ª Ãâ·ÂÇÑ µÚ pop
+		cout << q.front() << ", "; //kë²ˆì§¸ ê°’ ì¶œë ¥í•œ ë’¤ pop
 		q.pop();
 	}
 	cout << q.front() << ">";
