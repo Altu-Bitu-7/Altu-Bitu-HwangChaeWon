@@ -16,7 +16,9 @@ void prime()
         for (int k = i * i; k <= NumOfPrime; k += i)
         {
             if (primeNum[k])
+            {
                 continue;
+            }
             primeNum[k] = true;
         }
     }
@@ -52,7 +54,9 @@ int main()
         int n;
         cin >> n;
         if (n == 0)
+        {
             break;
+        }
         goldbach(n);
     }
 
