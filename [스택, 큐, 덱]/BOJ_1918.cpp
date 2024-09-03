@@ -5,7 +5,7 @@
 using namespace std;
 
 int priority(char ch) {
-	//°¢ ¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§¸¦ ¸®ÅÏÇØÁÖ´Â ÇÔ¼ö
+	//ê° ì—°ì‚°ìžì˜ ìš°ì„ ìˆœìœ„ë¥¼ ë¦¬í„´í•´ì£¼ëŠ” í•¨ìˆ˜
 	switch (ch) {
 	case '(': return 0;
 	case '+': case'-': return 1;
@@ -14,39 +14,39 @@ int priority(char ch) {
 }
 
 string postfix(string str) {
-	//ÁßÀ§ -> ÈÄÀ§
-	string result = ""; //ÈÄÀ§Ç¥±â½Ä ´ã´Â º¯¼ö
-	stack<char> s; //¿¬»êÀÚ ´ãÀ» ½ºÅÃ
+	//ì¤‘ìœ„ -> í›„ìœ„
+	string result = ""; //í›„ìœ„í‘œê¸°ì‹ ë‹´ëŠ” ë³€ìˆ˜
+	stack<char> s; //ì—°ì‚°ìž ë‹´ì„ ìŠ¤íƒ
 
 	for (int i = 0; i < str.size(); i++) {
 		char c = str[i];
 
 		switch (c) {
 		case '(': 
-			// ( °¡ ³ª¿À¸é ¹«Á¶°Ç push
+			// ( ê°€ ë‚˜ì˜¤ë©´ ë¬´ì¡°ê±´ push
 			s.push(c);
 			break;
 		case ')':
-			// ( °¡ ³ª¿Ã¶§±îÁö ½ºÅÃÀÇ °ªÀ» pop
+			// ( ê°€ ë‚˜ì˜¬ë•Œê¹Œì§€ ìŠ¤íƒì˜ ê°’ì„ pop
 			while (!s.empty() && s.top() != '(') {
 				result += s.top();
 				s.pop();
 			}
-			s.pop(); // ) ´Â °á°ú°ª¿¡ ÇÊ¿ä ¾øÀ¸¹Ç·Î result¿¡ ÀúÀåÇÏÁö ¾Ê°í pop
+			s.pop(); // ) ëŠ” ê²°ê³¼ê°’ì— í•„ìš” ì—†ìœ¼ë¯€ë¡œ resultì— ì €ìž¥í•˜ì§€ ì•Šê³  pop
 			break;
 		case '+': case '-': case '*': case'/':
-			//¿ì¼±¼øÀ§¸¦ °í·ÁÇØ¾ßÇÔ.
+			//ìš°ì„ ìˆœìœ„ë¥¼ ê³ ë ¤í•´ì•¼í•¨.
 			while (!s.empty() && priority(s.top()) >= priority(c)) {
-				//½ºÅÃÀÌ ºñ¾ú´ÂÁö Ç×»ó È®ÀÎ
-				//ÇöÀç ½ºÅÃÀÇ topÀÌ µé¾î¿Ã ¿¬»êÀÚº¸´Ù ¿ì¼±¼øÀ§°¡ ³ô´Ù¸é °á°ú°ª¿¡ ÀúÀå ÈÄ pop
+				//ìŠ¤íƒì´ ë¹„ì—ˆëŠ”ì§€ í•­ìƒ í™•ì¸
+				//í˜„ìž¬ ìŠ¤íƒì˜ topì´ ë“¤ì–´ì˜¬ ì—°ì‚°ìžë³´ë‹¤ ìš°ì„ ìˆœìœ„ê°€ ë†’ë‹¤ë©´ ê²°ê³¼ê°’ì— ì €ìž¥ í›„ pop
 				result += s.top(); 
 				s.pop();
 			}
-			s.push(c); //ÇöÀç ¿¬»êÀÚ¸¦ ½ºÅÃ¿¡ push
+			s.push(c); //í˜„ìž¬ ì—°ì‚°ìžë¥¼ ìŠ¤íƒì— push
 			break;
 		default:
 			result += c; 
-			//A~Z ÀÎ °æ¿ì¸¦ È®ÀÎ. À§¿¡¼­ ´Ù¸¥ °æ¿ì¸¦ ¸ðµÎ È®ÀÎÇß±â ¶§¹®¿¡ default·Î Àâ¾ÆÁÖ±â
+			//A~Z ì¸ ê²½ìš°ë¥¼ í™•ì¸. ìœ„ì—ì„œ ë‹¤ë¥¸ ê²½ìš°ë¥¼ ëª¨ë‘ í™•ì¸í–ˆê¸° ë•Œë¬¸ì— defaultë¡œ ìž¡ì•„ì£¼ê¸°
 		}
 	}
 
