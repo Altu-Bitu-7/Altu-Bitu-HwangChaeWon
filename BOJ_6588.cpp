@@ -1,36 +1,36 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
-#define NumOfPrime 1000000
+#define NUM_OF_PRIME 1000000
 
 using namespace std;
 
-vector<bool> primeNum(NumOfPrime + 1, false);
+vector<bool> prime_num(NUM_OF_PRIME + 1, false);
 
 void prime()
 {
-    primeNum[0] = true;
-    primeNum[1] = true;
-    for (int i = 2; i <= sqrt(NumOfPrime); i++)
+    prime_num[0] = true;
+    prime_num[1] = true;
+    for (int i = 2; i <= sqrt(NUM_OF_PRIME); i++)
     {
-        for (int k = i * i; k <= NumOfPrime; k += i)
+        for (int k = i * i; k <= NUM_OF_PRIME; k += i)
         {
-            if (primeNum[k])
+            if (prime_num[k])
             {
                 continue;
             }
-            primeNum[k] = true;
+            prime_num[k] = true;
         }
     }
 }
 
-void goldbach(int n)
+void goldBach(int n)
 {
     // 어떤 수(n) 가 골드바흐의 추측을 만족하는지 판단하는 방법
     // n보다 작은 수 a와 (n-a)가 모두 소수이면 추측을 만족한다.
     for (int i = 3; i <= n; i++)
     {
-        if (primeNum[i] == false && primeNum[n - i] == false)
+        if (prime_num[i] == false && prime_num[n - i] == false)
         {
             printf("%d = %d + %d\n", n, i, n - i);
             return;
@@ -57,7 +57,7 @@ int main()
         {
             break;
         }
-        goldbach(n);
+        goldBach(n);
     }
 
     return 0;
